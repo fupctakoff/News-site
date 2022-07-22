@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ new.title }}
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'inc/_sidebar.html' %}
+{% endblock %}
+
+{% block content %}
+    <div class="card mb-3">
+        <div class="card-header">
+            Вернуться к категории: <a href="{{ new.url_to_categories }}">{{ new.category }}</a>
+        </div>
+        <div class="card-body">
+            <div class="rrr">
+                {% if new.photo %}
+                    <img src="{{ new.photo.url }}" alt="" width="780" class="mr-3">
+                {% else %}
+                    <img src="/media/photos/2022/07/16/eJ4oTgxOQuMWG5ZNvun0oA.jpeg" alt="" width="780" height="400" class="mr-3">
+                {% endif %}
+                <div class="rrr_dy mt-3">
+                    <h5 class="card-title">{{ new.title }}</h5>
+                    <p class="card-text">{{ new.content|linebreaks }}</p>
+                    <a href="{% url 'home' %}" class="btn btn-primary">Ко всем новостям</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            {{ new.created_at }}
+        </div>
+    </div>
+{% endblock %}
+
