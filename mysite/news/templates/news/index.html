@@ -9,8 +9,8 @@
 {% endblock %}
 
 {% block content %}
+    <div class="count_of_news">Всего новостей: {{ count }}</div>
     {% for i in news %}
-        {% if i.is_published %}
             <div class="card mb-3">
                 <div class="card-header">
                     Категория: <a href="{{ i.url_to_categories }}">{{ i.category }}</a>
@@ -33,6 +33,5 @@
                     {{ i.created_at }}
                 </div>
             </div>
-        {% endif %}
     {% endfor %}
 {% endblock %}

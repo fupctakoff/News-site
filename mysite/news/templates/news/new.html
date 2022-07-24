@@ -30,6 +30,23 @@
         <div class="card-footer">
             {{ new.created_at }}
         </div>
+        <div class="row ml-3 mt-3">
+            <div class="col-md-6">
+                {% if previous_new %}
+                    <p><a href="{{ previous_new.get_absolute_url }}"> <<< Предыдущая новость</a></p>
+                {% else %}
+                    <p> <<< Предыдущая новость</p>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                {% if next_new %}
+                    <p><a href="{{ next_new.get_absolute_url }}"> Следующая новость >>></a></p>
+                {% else %}
+                    <p>Следующая новость >>></p>
+                {% endif %}
+            </div>
+        </div>
+
     </div>
 {% endblock %}
 
