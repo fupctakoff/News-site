@@ -23,6 +23,21 @@
             {% block sidebar %} Информация отсутствует {% endblock %}
         </div>
         <div class="col-md-9">
+
+            {% if messages %}
+                {% for i in messages %}
+                    {% if i.tags == 'error' %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ i }}
+                        </div>
+                    {% else %}
+                        <div class="alert alert-{{ i.tags }}" role="alert">
+                            {{ i }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+
             {% block content %} Информация отсутствует {% endblock %}
         </div>
     </div>
