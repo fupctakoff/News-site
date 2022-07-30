@@ -4,6 +4,7 @@ import re
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
+from captcha.fields import CaptchaField
 
 
 class NewsForm(forms.ModelForm):
@@ -24,7 +25,7 @@ class NewsForm(forms.ModelForm):
 
 
 class UserRegisterForm(UserCreationForm):
-    username = forms.CharField(label='Имя пользователя', help_text='На русском давай, да?',
+    username = forms.CharField(label='Имя пользователя', help_text='Помощник',
                                widget=forms.TextInput(attrs={'class': 'form-control'}))
     password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
     password2 = forms.CharField(label='Повторите пароль', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
@@ -35,8 +36,13 @@ class UserRegisterForm(UserCreationForm):
         fields = ('username', 'email', 'password1', 'password2')
 
 
-
 class UserLoginForm(AuthenticationForm):
     username = forms.CharField(label='Имя пользователя', widget=forms.TextInput(attrs={'class': 'form-control'}))
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
+
+class ContactForm(forms.Form):
+    subject = forms.CharField(label='Тема', widget=forms.TextInput(attrs={'class': 'form-control'}))
+    contact = forms.CharField(label='Текст', widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 8}))
+    to_email = forms.EmailField(label='Кому:', widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    captcha = CaptchaField(label='Проверочка')

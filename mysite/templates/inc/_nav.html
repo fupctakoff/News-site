@@ -13,6 +13,7 @@
             {% if request.user.is_authenticated and request.user.is_staff %}
             <li class="nav-item active"><a class="nav-link" href="{% url 'add-new' %}">Добавить новость</a></li>
             {% endif %}
+            <li class="nav-item active"><a class="nav-link" href="{% url 'mail' %}">Почтовик</a></li>
         </ul>
 
 
